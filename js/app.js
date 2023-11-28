@@ -36,7 +36,7 @@ const mostrarElemento = (el) => {
   el.classList.remove('d-none')
 }
 
-const iniciarTemporizador = (minutos, segundos) => {
+const iniciarTemporizador = (dias, horas, minutos, segundos) => {
   ocultarElemento(contenedor)
   mostrarElemento(btnPausa)
   ocultarElemento(btnInicio)
@@ -45,10 +45,9 @@ const iniciarTemporizador = (minutos, segundos) => {
   if(fechaFutura){
     fechaFutura = new Date(new Date().getTime() + diferenciaDeTiempo)
     diferenciaDeTiempo = 0
-  } else{
-    const milisegundos = (segundos + (minutos * 60)) * 1000
+  } else{//               segundos +   seg en 1min  +  seg en 1hora  + seg en 1 día (multiplico por mil para pasar todos los s a ms)
+    const milisegundos = (segundos + (minutos * 60) + (horas * 3600) + dias * 86400) * 1000
     fechaFutura = new Date(new Date().getTime() + milisegundos)
-    console.log(minutos);
   }
   
   clearInterval(idInterval)
@@ -92,13 +91,17 @@ const agregarCero = (valor) => {
 }
 
 const convertirMilisegundos = (milisegundos) => {
-  const minutos = parseInt(milisegundos / 1000 / 60)
+  const dias = parseInt(Math.floor(milisegundos / (1000 * 60 * 60 * 24)))
+  horas = parseInt(Math.floor(milisegundos / (1000 * 60 * 60)) % 24)
+  minutos = parseInt(Math.floor(milisegundos / 1000 / 60) % 60)
+  segundos = parseInt(Math.floor(milisegundos / 1000) % 60)
   milisegundos -= minutos * 60 * 1000
-  segundos = (milisegundos / 1000)
-  return `${agregarCero(minutos)}:${agregarCero(segundos.toFixed(1))}`
+  return `${agregarCero(dias)}días - ${agregarCero(horas)}hs - ${agregarCero(minutos)}min - ${agregarCero(segundos)}seg`
 }
 
 const inicioApp = () => {
+  diasUser.value = '0'
+  horasUser.value = '0'
   minutosUser.value = '0'
   segundosUser.value = '0'
   mostrarElemento(contenedor)
@@ -108,13 +111,14 @@ const inicioApp = () => {
 }
 
 btnInicio.addEventListener('click', () => {
+  const dias = parseInt(diasUser.value)
+  const horas = parseInt(horasUser.value)
   const minutos = parseInt(minutosUser.value)
   const segundos = parseInt(segundosUser.value)
-  if(isNaN(minutos) || isNaN(segundos) || (segundos <= 0 && minutos <= 0)){
-    console.log('Error');
+  if(isNaN(dias) || isNaN(horas) || isNaN(minutos) || isNaN(segundos) || (segundos <= 0 && minutos <= 0 && horas <= 0 && dias <= 0)){
     return
   } 
-  iniciarTemporizador(minutos, segundos)
+  iniciarTemporizador(dias, horas, minutos, segundos)
 })
 
 inicioApp()
