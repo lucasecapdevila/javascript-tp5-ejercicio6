@@ -133,7 +133,13 @@ btnInicio.addEventListener('click', () => {
   const minutos = parseInt(minutosUser.value)
   const segundos = parseInt(segundosUser.value)
   if(isNaN(dias) || isNaN(horas) || isNaN(minutos) || isNaN(segundos) || (segundos <= 0 && minutos <= 0 && horas <= 0 && dias <= 0)){
+    Swal.fire({
+      title: "No se pudo iniciar el temporizador",
+      text: "Debes colocar un tiempo para que el temporizador funcione.",
+      icon: "error"
+    });
     return
+
   } 
   iniciarTemporizador(dias, horas, minutos, segundos)
 })
