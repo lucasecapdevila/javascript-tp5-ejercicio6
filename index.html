@@ -7,6 +7,7 @@
   <meta name="description" content="Trabajo Práctico N°5 (DOM y BOM) - Ejercicio 6" />
   <meta name="keywords" content="javascript, DOM, consola, BOM, document, browser" />
   <link rel="icon" href="media/chronometer.png">
+  <script src="https://kit.fontawesome.com/c7393ce70b.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css">
 
@@ -41,7 +42,7 @@
   <main class="container my-2">
     <h1 class="text-center display-1">Temporizador</h1>
 
-    <div id="contenedorInputs">
+    <div id="contenedorInputs" class="anchoInputs mx-auto">
       <div class="form-floating mb-3">
         <input 
           type="number"
@@ -79,10 +80,13 @@
         <label for="inputSegundos">Segundos</label>
       </div>
     </div>
-    <p id="tiempoRestante">00:00.0</p>
-    <button id="btnInicio" class="btn btn-success">Iniciar</button>
-    <button id="btnPausa" class="btn btn-warning">Pausar</button>
-    <button id="btnReinicio" class="btn btn-dark">Reiniciar</button>
+
+    <div class="timer mt-5 text-center">
+      <p id="tiempoRestante" class="tiempo fs-1">00:00.0</p>
+      <button id="btnInicio" class="btn btn-lg btn-success"><i class="fa-solid fa-play"></i></button>
+      <button id="btnPausa" class="btn btn-lg btn-warning"><i class="fa-solid fa-pause"></i></button>
+      <button id="btnReinicio" class="btn btn-lg btn-danger"><i class="fa-solid fa-stop"></i></button>
+    </div>
 
   </main>
 
