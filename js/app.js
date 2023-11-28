@@ -73,6 +73,23 @@ const pausarTemporizador = () => {
 }
 
 const reiniciarTemporizador = () => {
+  Swal.fire({
+    title: "¿Quieres detener el temporizador?",
+    text: "Una vez que lo hagas, no podrás continuar con el tiempo actual",
+    icon: "warning",
+    showCancelButton: false,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, quiero detenerlo"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Temporizador detenido",
+        text: "Se reinició el temporizador",
+        icon: "success"
+      });
+    }
+  });
   clearInterval(idInterval)
   fechaFutura = null
   diferenciaDeTiempo = 0
