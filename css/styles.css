@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  /* Fondo gradiente */
+  background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
 }
 
 main{
@@ -16,4 +21,36 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+
+
+/* Ajustar ancho responsive de inputs */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .anchoInputs{
+    width: 80%;
+  }  
+}
+
+@media screen and (min-width: 992px) {
+  .anchoInputs{
+    width: 30%;
+  }  
+}
+
+
+
+/* Cambiar fuente de temporizador */
+.tiempo{
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* Efecto al presionar botón */
+button:active{
+  transform: scale(0.98);
+  -webkit-box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.2);
+  -moz-box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.2);
+  box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.2);
 }
