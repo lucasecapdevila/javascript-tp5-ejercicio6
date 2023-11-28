@@ -113,7 +113,7 @@ const convertirMilisegundos = (milisegundos) => {
   minutos = parseInt(Math.floor(milisegundos / 1000 / 60) % 60)
   segundos = parseInt(Math.floor(milisegundos / 1000) % 60)
   milisegundos -= minutos * 60 * 1000
-  return `${agregarCero(dias)}días - ${agregarCero(horas)}hs - ${agregarCero(minutos)}min - ${agregarCero(segundos)}seg`
+  return `${agregarCero(dias)} días - ${agregarCero(horas)}hs - ${agregarCero(minutos)}min - ${agregarCero(segundos)}seg`
 }
 
 const inicioApp = () => {
