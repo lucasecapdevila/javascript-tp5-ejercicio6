@@ -46,3 +46,31 @@ const convertirMilisegundos = (milisegundos) => {
   segundos = (milisegundos / 1000)
   return `${minutos}:${segundos}`
 }
+
+const iniciar = (minutos, segundos) => {
+  ocultarElemento(contenedor)
+  mostrarElemento(btnPausa)
+  ocultarElemento(btnInicio)
+  ocultarElemento(btnReinicio)
+
+  if(fechaFutura){
+    fechaFutura = new Date(new Date().getTime() + diferenciaDeTiempo)
+    diferenciaDeTiempo = 0
+  } else{
+    const milisegundos = (segundos + (minutos * 60)) * 1000
+    fechaFutura = new Date(new Date().getTime() + milisegundos)
+  }
+
+  clearInterval(idInterval)
+  idInterval = setInterval(() => {
+    const tiempoRestante = fechaFutura.getTime() - new Date().getTime()
+    if(tiempoRestante <= 0){
+      clearInterval(idInterval)
+      audio.play()
+      ocultarElemento(btnPausa)
+      mostrarElemento(btnReinicio)
+    } else{
+      tiempoRestante.innerText = convertirMilisegundos(tiempoRestante)
+    }
+  })
+}
